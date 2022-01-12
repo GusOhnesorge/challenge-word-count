@@ -6,11 +6,11 @@
 export const countWords = (phrase) => {
   phrase = phrase.toLowerCase()
   // replaces the characters in brackets with "" in g (the whole string)
-  // uses trim() to remove extra spaces
-  phrase = phrase.trim().replace(/[!&@$%^&\?\.,:]/g, " ")
+  phrase = phrase.replace(/[!&@$%^&\?\.,:]/g, " ")
   // initial attempt at fixing parentheses
+  // uses trim() to remove extra spaces
   // phrase = phrase.replace(/(\s'|'\s|)/g, " ")
-  let separate_words = phrase.split(/\s+/)
+  let separate_words = phrase.trim().split(/\s+/)
   let word_count = {}
   for (let i = 0; i<separate_words.length; i++){
     let word = separate_words[i]
