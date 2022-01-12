@@ -4,8 +4,9 @@
 //
 
 export const countWords = (phrase) => {
-  phrase.toLowerCase()
-  let separate_words = phrase.split(" ")
+  phrase = phrase.toLowerCase()
+  phrase = phrase.replace(/[!&@$%^&]/, " ")
+  let separate_words = phrase.split(/[\s]+/)
   let word_count = {}
   for (let i = 0; i<separate_words.length; i++){
     let word = separate_words[i]
