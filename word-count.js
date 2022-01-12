@@ -5,12 +5,20 @@
 
 export const countWords = (phrase) => {
   phrase = phrase.toLowerCase()
-  //replaces the characters in brackets with "" in g (the whole string)
-  phrase = phrase.replace(/[!&@$%^&\?\.,:]/g, "")
+  // replaces the characters in brackets with "" in g (the whole string)
+  // uses trim() to remove extra spaces
+  phrase = phrase.trim().replace(/[!&@$%^&\?\.,:]/g, " ")
+  // initial attempt at fixing parentheses
+  // phrase = phrase.replace(/(\s'|'\s|)/g, " ")
   let separate_words = phrase.split(/\s+/)
   let word_count = {}
   for (let i = 0; i<separate_words.length; i++){
     let word = separate_words[i]
+    // parsing each word for a pattern matching '***' of any length
+    if (word.match(/^\'.*\'$/g) !== null){
+      // cutting off parentheses
+      word = word.substring(1, word.length-1)
+    }
     let current_count = word_count[word]
     // === avoiding type conversion
     // could also check using slower 'in' property
